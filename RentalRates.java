@@ -8,7 +8,7 @@ import java.util.*;
 
 public class RentalRates
 {
-   private static final boolean DEBUG = true; //set to true to run in debug
+   private static final boolean DEBUG = false; //set to true to run in debug
    
    private static final String BEST_RATE = "Best rate - $40.00 per day or $200.00 per week.";
    private static final String RISK_RATE_1= "Risk rate 1-$50.00 per day or $255.00 per week.";
@@ -149,12 +149,9 @@ public class RentalRates
       System.out.println("What is your birth year? "); //ask for year
       birthYear = kb.nextInt();
       
-      // Get age...
-         
+      // Get age... 
          age = calcAge(curMonth, curDay, curYear, birthMonth, birthDay, birthYear);
          
-         
-      	
       // Get the rental rate...
          rateResult = calcRateClass(age, gender);
       	
@@ -162,5 +159,22 @@ public class RentalRates
          displayResults(gender, age, rateResult);
       }
    }
+   
+   //------start of calcAge Method
+           public static int calcAge(int curMonth, int curDay, int curYear, int birthMonth, int birthDay, int birthYear)
+        {
+         int baseYear = (curYear - birthYear);
+         
+            if(curMonth - birthMonth < 0)
+               baseYear = baseYear - 1;
+            else if(curMonth == birthMonth && ((curDay - birthDay) < 0))
+               baseYear = baseYear - 1;
+            else
+               baseYear = baseYear;
+
+            return baseYear;
+        }
+     //------end of calcAge Method
+     
 }
    
